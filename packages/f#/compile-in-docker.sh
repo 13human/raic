@@ -6,9 +6,9 @@ fi
 set -ex
 
 if [ "$1" != "base" ]; then
-    rm MyStrategy.py
+    rm MyStrategy.fs
     cp -rn /src/* ./
 fi
-find . -name '*.pyx' -exec cythonize -i {} \;
-python -m py_compile Runner.py
-cp -r * /output/
+
+dotnet build -c Release
+cp bin/Release/netcoreapp2.1/* /output/
